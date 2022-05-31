@@ -65,7 +65,9 @@ func main() {
 		w.WriteString(fmt.Sprintf("%s%s%s=%s\n", m[0][1], m[0][2], m[0][3], res))
 	}
 
-	w.Flush()
+	if err = w.Flush(); err != nil {
+		errorExit(err)
+	}
 
 	if scanner.Err() != nil {
 		errorExit(scanner.Err())
